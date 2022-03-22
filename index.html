@@ -1,111 +1,20 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>reveal.js</title>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/simple.css">
-    <script id="sounds" type="application/json">
-        {
-            "nakedcall": {
-                "loop": true,
-                "src": [
-                    "sounds/nakedcall.mp3",
-                    "sounds/nakedcall.ogg"
-                ]
-            },
-            "manstitutes": {
-                "src": [
-                    "sounds/manstitutes.mp3",
-                    "sounds/manstitutes.ogg"
-                ]
-            },
-            "bar": {
-                "src": [
-                    "sounds/bar.mp3",
-                    "sounds/bar.ogg"
-                ]
-            },
-            "ding": {
-                "src": [
-                    "sounds/ding.mp3",
-                    "sounds/ding.ogg"
-                ]
-            },
-            "bubbles2": {
-                "src": [
-                    "sounds/bubbles2.mp3",
-                    "sounds/bubbles2.ogg"
-                ]
-            }
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webyarns Sounds Library</title>
 </head>
 <body>
-<div class="reveal">
-    <div class="slides">
-        <section>
-            <h2>Start</h2>
-            <a id="test">Test if sound plays at all</a>
-        </section>
-        <section data-sounds="bar">
-            <h2>bar</h2>
-            <code>data-sounds="bar"</code>
-        </section>
-        <section data-sounds="bar,bubbles2">
-            <h2>bar, bubbles2</h2>
-            <code>data-sounds="bar,bubbles2"</code>
-        </section>
-        <section data-sounds="bar">
-            <h2>bar</h2>
-            <code>  <code>data-sounds="bar"</code></code>
-        </section>
-        <!--        <section>-->
-        <!--            <h2>No sounds</h2>-->
-        <!--        </section>-->
 
-        <section>
-            <h2>silent</h2>
-            <code>(no attributes)</code>
-        </section>
-        <section data-sounds=">bar">
-            <h2>bar</h2>
-            <h3>(persistent)</h3>
-            <code>data-sounds=">bar"</code>
-        </section>
-        <section data-sounds-volume-change="bar:0.1">
-            <h2>change bar volume</h2>
-            <code>data-sounds-volume-change="bar:0.2"</code>
-        </section>
-        <section data-sounds="#bar">
-            <h2>stop (persistent) bar</h2>
-            <code>data-sounds="#bar"</code>
-        </section>
-        <section data-sounds="nakedcall">
-            <h2>nakedcall (loops)</h2>
-            <code>data-sounds="nakedcall"</code>
-        </section>
-        <section data-sounds="ding" data-fade-out-speed="0">
-            <h2>ding</h2>
-            <code>data-sounds="ding" <br> data-fade-out-speed="0"</code>
-            <footer>(stops nakedcall with no fade-out)</footer>
-        </section>
-    </div>
-</div>
-<script src="js/helpers.js"></script>
-<script src="js/reveal-vertical.js"></script>
-<script>
-    console.log(WebyarnsSounds.soundHandler);
-    Reveal.initialize({
-        synchronousSlideChange: WebyarnsSounds.soundHandler,
-        // history: true,
-        dependencies: [
-            {src: 'js/webyarn-plugin.js'},
+<h1>Sound Demos and Tests</h1>
 
-        ]
-    });
-</script>
+<ul>
+    <li><a href="loop.html">looping</a></li>
+    <li><a href="various.html">collection of demos</a></li>
+</ul>
+
 </body>
 </html>

@@ -59,13 +59,24 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: "index.html",
+                template: "loop.html",
                 scriptLoading: "blocking",
-                inject: "head"
+                inject: "head",
+                filename: "loop.html"
+            }),
+            new HtmlWebpackPlugin({
+                template: "various.html",
+                scriptLoading: "blocking",
+                inject: "head",
+                filename: "various.html"
             }),
             new CopyPlugin({
 
                 patterns: [
+                    {
+                        from: "index.html",
+                        to: "index.html",
+                    },
                     {
                         from: "sounds",
                         to: "sounds",
