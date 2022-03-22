@@ -19,7 +19,6 @@ export function init() {
         const howl = new Howl({
             src: data[id].src,
             html5: true,
-            pool: dataKeys.length,
             loop: Boolean(data[id].loop),
             onplayerror: function () {
                 console.log("error");
