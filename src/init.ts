@@ -14,13 +14,13 @@ export function init() {
 
 
     const data: SoundData = loadData()
-    return Object.keys(data).reduce((acc, id) => {
+    const dataKeys = Object.keys(data);
+    return dataKeys.reduce((acc, id) => {
         const howl = new Howl({
             src: data[id].src,
             html5: true,
-            autoplay: false,
+            pool: dataKeys.length,
             loop: Boolean(data[id].loop),
-            // howl: null,
             onplayerror: function () {
                 console.log("error");
                 howl.once('unlock', function () {
