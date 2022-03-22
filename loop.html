@@ -47,7 +47,9 @@
 <div class="reveal">
     <div class="slides">
         <section>
-            <h2>Start</h2>
+            <h2>before starting:</h2>
+            <h1><a id="init-sounds" href="#">click here!</a></h1>
+            <h2>then proceed to next</h2>
         </section>
         <section data-sounds="nakedcall">
             <h2>nakedcall (loops)</h2>
@@ -59,7 +61,11 @@
 <script src="js/helpers.js"></script>
 <script src="js/reveal-vertical.js"></script>
 <script>
-    console.log(WebyarnsSounds.soundHandler);
+    document.getElementById("init-sounds").addEventListener("click", (e)=>{
+        e.preventDefault()
+        WebyarnsSounds.audioMap()
+    })
+
     Reveal.initialize({
         synchronousSlideChange: WebyarnsSounds.soundHandler,
         // history: true,

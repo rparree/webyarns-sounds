@@ -9,7 +9,7 @@ let persistentAudios: string[] = []
 
 let _audioMap: AudioMap | null
 
-const audioMap: () => AudioMap = ()=> {
+export const audioMap: () => AudioMap = ()=> {
     if (!_audioMap) {
         console.log("lazy loading");
         _audioMap = init()
