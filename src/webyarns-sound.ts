@@ -7,7 +7,16 @@ import {init} from "./init";
 let persistentAudios: string[] = []
 // end State
 
-const audioMap: AudioMap = init()
+let _audioMap: AudioMap | null
+
+const audioMap: () => AudioMap = ()=> {
+    if (!_audioMap) {
+        console.log("lazy loading");
+        _audioMap = init()
+    }
+    return _audioMap;
+}
+
 
 const nextAudioActions = (currentSounds: string[], nextSounds: string[]): [string[], string[]] => {
     const [toRestart, nextToStartIds]: [string[], string[]] = partition(nextSounds, e => e.startsWith("!"));
@@ -41,7 +50,7 @@ function volumeHandler(e: SlideEvent) {
         return
     const [id, v] = volumeChange?.split(":");
     const volume = parseFloat(v)
-    audioMap[id].volume(volume)
+    audioMap()[id].volume(volume)
 }
 
 export const soundHandler = (e: SlideEvent) => {
@@ -60,18 +69,18 @@ export const soundHandler = (e: SlideEvent) => {
     volumeHandler(e)
 
     toStop.map(id => {
-        if (!audioMap[id])
+        if (!audioMap()[id])
             console.error("no invalid audioMap for " + id)
         else
-            audioMap[id].fade(1, 0, fadeValue(e,'fade-out-speed'));
+            audioMap()[id].fade(1, 0, fadeValue(e,'fade-out-speed'));
     })
     toStart.map(id => {
-        if (!audioMap[id])
+        if (!audioMap()[id])
             console.error("no invalid audioMap for " + id)
         else {
-            audioMap[id].stop()
-            audioMap[id].play()
-            audioMap[id].fade(0, 1, fadeValue(e,"fade-in-speed"))
+            audioMap()[id].stop()
+            audioMap()[id].play()
+            audioMap()[id].fade(0, 1, fadeValue(e,"fade-in-speed"))
         }
     })
 
