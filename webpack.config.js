@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const { GitRevisionPlugin } = require('git-revision-webpack-plugin')
 
 module.exports = (env, argv) => {
     const version = process.env.npm_package_version
@@ -58,6 +59,7 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
+            new GitRevisionPlugin(),
             new HtmlWebpackPlugin({
                 template: "loop.html",
                 scriptLoading: "blocking",
