@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "howler": "^2.1.2",
-    "webyarns-reveal": "git://github.com/rparree/reveal.js.git#3.8.17-vertical"
+    "webyarns-reveal": "github:rparree/reveal.js.git#3.8.17-vertical"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
