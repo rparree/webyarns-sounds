@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>webyarns-sounds - various</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/simple.css">
+    <script id="sounds" type="application/json">{
+        "nakedcall": {
+            "loop": true,
+            "src": [
+                "sounds/nakedcall.mp3",
+                "sounds/nakedcall.ogg"
+            ]
+        },
+        "manstitutes": {
+            "loop": true,
+            "src": [
+                "sounds/manstitutes.mp3",
+                "sounds/manstitutes.ogg"
+            ]
+        },
+        "bar": {
+            "loop": true,
+            "src": [
+                "sounds/bar.mp3",
+                "sounds/bar.ogg"
+            ]
+        },
+        "ding": {
+            "src": [
+                "sounds/ding.mp3",
+                "sounds/ding.ogg"
+            ]
+        },
+        "bubbles2": {
+            "src": [
+                "sounds/bubbles2.mp3",
+                "sounds/bubbles2.ogg"
+            ]
+        }
+        }
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>before starting:</h2>
+            <h1><a id="init-sounds" href="#">click here!</a></h1>
+            <h2>then proceed to next</h2></section>
+        <section data-sounds="manstitutes">
+            <h2>manstitutes</h2>
+            <code>data-sounds="manstitutes"</code>
+        </section>
+        <section data-sounds="bar">
+            <h2>bar</h2>
+            <code>data-sounds="bar"</code>
+        </section>
+        <section data-sounds="bubbles2">
+            <h2>bubbles2</h2>
+            <code>data-sounds="bubbles2"</code>
+        </section>
+        <section data-sounds="!bubbles2,bar">
+            <h2>bubbles2,bar</h2><code>data-sounds="bar,bubbles2"</code>
+        </section>
+        <section data-sounds="nakedcall">
+            <h2>nakedcall</h2>
+            <code>
+                <code>data-sounds="nakedcall"</code>
+            </code>
+        </section>
+        <section>
+            <h2>silent</h2>
+            <code>(no attributes)</code>
+        </section>
+        <section data-sounds="manstitutes">
+            <h2>manstitutes</h2>
+            <code>data-sounds="manstitutes"</code>
+        </section>
+        <section  data-sounds-volume-change="manstitutes:0.3">
+            <h2>change manstitutes volume</h2>
+            <code>data-sounds="manstitutes" data-sounds-volume-change="manstitutes:0.3"</code>
+        </section>
+        <section data-sounds="bar">
+            <h2>bar</h2>
+            <code>data-sounds="bar"</code>
+        </section>
+        <section data-sounds="#bar">
+            <h2>stop (persistent) bar</h2>
+            <code>data-sounds="#bar"</code>
+        </section>
+        <section data-sounds="nakedcall">
+            <h2>nakedcall (loops)</h2>
+            <code>data-sounds="nakedcall"</code>
+        </section>
+        <section data-sounds="ding" data-fade-out-speed="0">
+            <h2>ding</h2>
+            <code>data-sounds="ding"<br>data-fade-out-speed="0"</code>
+            <footer>(stops nakedcall with no fade-out)</footer>
+        </section>
+    </div>
+</div>
+<script src="js/helpers.js"></script>
+<script src="js/reveal-vertical.js"></script>
+<script>document.getElementById("init-sounds").addEventListener("click", (e) => {
+    e.preventDefault()
+    WebyarnsSounds.audioMap()
+    setTimeout(()=>Reveal.next(),400)
+})
+
+console.log(WebyarnsSounds.soundHandler);
+Reveal.initialize({
+    synchronousSlideChange: WebyarnsSounds.soundHandler,
+    // history: true,
+    dependencies: [
+        {src: 'js/webyarn-plugin.js'},
+
+    ]
+});</script>
+</body>
+</html>

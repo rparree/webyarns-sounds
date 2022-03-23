@@ -5,6 +5,15 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const { GitRevisionPlugin } = require('git-revision-webpack-plugin')
 
+function genHtmlWebpackPlugin(template) {
+    return new HtmlWebpackPlugin({
+        template: template,
+        scriptLoading: "blocking",
+        inject: "head",
+        filename: template
+    });
+}
+
 module.exports = (env, argv) => {
     const version = process.env.npm_package_version
     const isDevMode = argv.mode === 'development';
@@ -60,18 +69,9 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new GitRevisionPlugin(),
-            new HtmlWebpackPlugin({
-                template: "loop.html",
-                scriptLoading: "blocking",
-                inject: "head",
-                filename: "loop.html"
-            }),
-            new HtmlWebpackPlugin({
-                template: "various.html",
-                scriptLoading: "blocking",
-                inject: "head",
-                filename: "various.html"
-            }),
+            genHtmlWebpackPlugin("loop.html"),
+            genHtmlWebpackPlugin("various.html"),
+            genHtmlWebpackPlugin("various2.html"),
             new CopyPlugin({
 
                 patterns: [
