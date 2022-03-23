@@ -1,7 +1,19 @@
 import {SoundData} from "./types";
 import {Howl} from "howler";
 
-export function init() {
+
+const completionHelper = (total: number, doneFn?: () => void,) => {
+    let counter = 0;
+    return function (p: any) {
+        counter++
+        if (counter == total) {
+            console.log("done")
+            if (doneFn) doneFn()
+        }
+    }
+}
+
+export function init(doneFn?: () => void) {
     console.log("initialing audio-map");
     const loadData = (): SoundData => {
         const elementById = document.getElementById('sounds');
@@ -15,6 +27,8 @@ export function init() {
 
     const data: SoundData = loadData()
     const dataKeys = Object.keys(data);
+    const count = dataKeys.length
+    const completionTrigger = completionHelper(count, doneFn)
     return dataKeys.reduce((acc, id) => {
         const howl = new Howl({
             src: data[id].src,
@@ -24,7 +38,9 @@ export function init() {
                 howl.once('unlock', function () {
                     howl.play();
                 });
-            }
+            },
+            onload: completionTrigger,
+            onloaderror: completionTrigger
         });
 
 

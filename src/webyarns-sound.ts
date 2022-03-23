@@ -7,10 +7,10 @@ import {init} from "./init";
 
 let _audioMap: AudioMap | null
 
-export const audioMap: () => AudioMap = ()=> {
+export const audioMap: (doneFn?: () => void) => AudioMap = (doneFn)=> {
     if (!_audioMap) {
         console.log("lazy loading");
-        _audioMap = init()
+        _audioMap = init(doneFn)
     }
     return _audioMap;
 }
