@@ -46,10 +46,8 @@
 <body>
 <div class="reveal">
     <div class="slides">
-        <section>
-            <h2>before starting:</h2>
-            <h1><a id="init-sounds" href="#">click here!</a></h1>
-            <h2>then proceed to next</h2>
+        <section data-disable-keyboard data-prevent-swipe>
+            <h1><a id="init-sounds" href="#">click here to start</a></h1>
         </section>
         <section data-sounds="nakedcall">
             <h2>nakedcall (loops)</h2>
@@ -60,15 +58,18 @@
 </div>
 <script src="js/helpers.js"></script>
 <script src="js/reveal-vertical.js"></script>
+<script src="js/webyarns-utils.js"></script>
 <script>
-    document.getElementById("init-sounds").addEventListener("click", (e)=>{
+    document.getElementById("init-sounds").addEventListener("click", (e) => {
         e.preventDefault()
-        WebyarnsSounds.audioMap()
+        WebyarnsSounds.audioMap(() => {
+            Reveal.next()
+        })
     })
 
     Reveal.initialize({
         synchronousSlideChange: WebyarnsSounds.soundHandler,
-        // history: true,
+        keyboardCondition: disableKeyboardSupport,
         dependencies: [
             {src: 'js/webyarn-plugin.js'},
 

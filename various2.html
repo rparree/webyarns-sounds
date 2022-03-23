@@ -41,16 +41,14 @@
                 "sounds/bubbles2.ogg"
             ]
         }
-        }
+    }
     </script>
 </head>
 <body>
 <div class="reveal">
     <div class="slides">
-        <section>
-            <h2>before starting:</h2>
-            <h1><a id="init-sounds" href="#">click here!</a></h1>
-            <h2>then proceed to next</h2></section>
+        <section data-disable-keyboard data-prevent-swipe>
+            <h1><a id="init-sounds" href="#">click here to start</a></h1>
         <section data-sounds="manstitutes">
             <h2>manstitutes</h2>
             <code>data-sounds="manstitutes"</code>
@@ -105,19 +103,24 @@
 </div>
 <script src="js/helpers.js"></script>
 <script src="js/reveal-vertical.js"></script>
-<script>document.getElementById("init-sounds").addEventListener("click", (e) => {
-    e.preventDefault()
-    WebyarnsSounds.audioMap()
-})
+<script src="js/webyarns-utils.js"></script>
+<script>
+    document.getElementById("init-sounds").addEventListener("click", (e) => {
+        e.preventDefault()
+        WebyarnsSounds.audioMap(() => {
+            Reveal.next()
+        })
+    })
 
-console.log(WebyarnsSounds.soundHandler);
-Reveal.initialize({
-    synchronousSlideChange: WebyarnsSounds.soundHandler,
-    // history: true,
-    dependencies: [
-        {src: 'js/webyarn-plugin.js'},
 
-    ]
-});</script>
+    console.log(WebyarnsSounds.soundHandler);
+    Reveal.initialize({
+        synchronousSlideChange: WebyarnsSounds.soundHandler,
+        keyboardCondition: disableKeyboardSupport,
+        dependencies: [
+            {src: 'js/webyarn-plugin.js'},
+
+        ]
+    });</script>
 </body>
 </html>
