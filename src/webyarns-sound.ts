@@ -23,6 +23,7 @@ function volumeHandler(e: SlideEvent) {
         return
     const [id, v] = volumeChange?.split(":");
     const volume = parseFloat(v)
+    console.log("adjusting volume for",id,"to", volume);
     audioMap()[id].volume(volume)
 }
 
@@ -38,7 +39,6 @@ export const soundHandler = (e: SlideEvent) => {
     const currentSounds = soundData(currentSoundData);
 
     const [toStop, toStart] = nextAudioActions(currentSounds, nextSounds);
-    console.log(toStop, toStart);
     volumeHandler(e)
 
     toStop.map(id => {

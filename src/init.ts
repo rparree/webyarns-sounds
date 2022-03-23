@@ -32,6 +32,7 @@ export function init() {
 
         howl.on("fade", (n) => {
             if (howl.volume() === 0) {
+                console.log("stopping");
                 howl.stop(n);
             }
         });
