@@ -4,7 +4,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const { GitRevisionPlugin } = require('git-revision-webpack-plugin')
-
+const gitRevisionPlugin = new GitRevisionPlugin()
 function genHtmlWebpackPlugin(template) {
     return new HtmlWebpackPlugin({
         template: template,
@@ -16,6 +16,7 @@ function genHtmlWebpackPlugin(template) {
 
 module.exports = (env, argv) => {
     const version = process.env.npm_package_version
+    commitHash =  JSON.stringify(gitRevisionPlugin.commithash())
     const isDevMode = argv.mode === 'development';
     console.log("development mode: ", isDevMode)
 
@@ -68,7 +69,7 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
-            new GitRevisionPlugin(),
+            gitRevisionPlugin,
             genHtmlWebpackPlugin("loop.html"),
             genHtmlWebpackPlugin("various.html"),
             genHtmlWebpackPlugin("various2.html"),
@@ -99,7 +100,7 @@ module.exports = (env, argv) => {
 
             }),
             new webpack.BannerPlugin({
-                banner: `version: ${version}\n`
+                banner: `version: ${version} (${commitHash})\n`
             }),
         ],
         devServer: {
