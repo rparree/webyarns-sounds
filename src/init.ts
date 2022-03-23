@@ -18,8 +18,6 @@ export function init() {
     return dataKeys.reduce((acc, id) => {
         const howl = new Howl({
             src: data[id].src,
-            // html5: true,
-            // pool: dataKeys.length,
             loop: Boolean(data[id].loop),
             onplayerror: function () {
                 console.log("error");
