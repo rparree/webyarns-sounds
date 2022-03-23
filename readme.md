@@ -1,3 +1,8 @@
+## Project
+
+- Orignal 2015 project was at https://github.com/rparree/webyarns-utils/tree/master/sound-api
+- then moved in 2019 to https://github.com/rparree/reveal.js/commit/6978496a998fa20f3621443ede8e369c5987d65d
+
 ## Usage
 
 Sound API:
