@@ -1,0 +1,17 @@
+.webyarns-sounds-init {
+    animation: ws-fade-out 500ms forwards;
+}
+
+
+@keyframes ws-fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.webyarns-sounds-loader {
+
+}

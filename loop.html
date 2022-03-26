@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/simple.css">
+    <link rel="stylesheet" href="css/loader.css">
     <script id="sounds" type="application/json">
         {
             "nakedcall": {
@@ -48,23 +49,25 @@
     <div class="slides">
         <section data-disable-keyboard data-prevent-swipe>
             <h1><a id="init-sounds" href="#">click here to start</a></h1>
+            <div id="sound-loader">
+                <div class="loader-pulsing-dot"></div>
+            </div>
         </section>
         <section data-sounds="nakedcall">
             <h2>nakedcall (loops)</h2>
             <code>data-sounds="nakedcall"</code>
         </section>
-
     </div>
 </div>
 <script src="js/helpers.js"></script>
 <script src="js/reveal-vertical.js"></script>
 <script src="js/webyarns-utils.js"></script>
 <script>
-    document.getElementById("init-sounds").addEventListener("click", (e) => {
-        e.preventDefault()
-        WebyarnsSounds.audioMap(() => {
-            Reveal.next()
-        })
+    WebyarnsSounds.init({
+        initElement: document.getElementById("init-sounds"),
+        loaderElement: document.getElementById("sound-loader")
+    }).then(() => {
+        Reveal.next()
     })
 
     Reveal.initialize({

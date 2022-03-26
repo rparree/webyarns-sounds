@@ -2,9 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
-const { GitRevisionPlugin } = require('git-revision-webpack-plugin')
+const {GitRevisionPlugin} = require('git-revision-webpack-plugin')
 const gitRevisionPlugin = new GitRevisionPlugin()
+
 function genHtmlWebpackPlugin(template) {
     return new HtmlWebpackPlugin({
         template: template,
@@ -16,7 +18,7 @@ function genHtmlWebpackPlugin(template) {
 
 module.exports = (env, argv) => {
     const version = process.env.npm_package_version
-    commitHash =  JSON.stringify(gitRevisionPlugin.commithash())
+    commitHash = JSON.stringify(gitRevisionPlugin.commithash())
     const isDevMode = argv.mode === 'development';
     console.log("development mode: ", isDevMode)
 
@@ -66,6 +68,16 @@ module.exports = (env, argv) => {
                         }
                     }
                 },
+                {
+                    test: /\.css$/i,
+                    use: [
+                        isDevMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                        "css-loader",
+                        "postcss-loader"
+                        /*    "sass-loader",*/
+                    ],
+                }
+
             ]
         },
         plugins: [
@@ -73,12 +85,19 @@ module.exports = (env, argv) => {
             genHtmlWebpackPlugin("loop.html"),
             genHtmlWebpackPlugin("various.html"),
             genHtmlWebpackPlugin("various2.html"),
+            new MiniCssExtractPlugin({
+                filename: `[name]-${version}.css`,
+            }),
             new CopyPlugin({
 
                 patterns: [
                     {
                         from: "index.html",
                         to: "index.html",
+                    },
+                    {
+                        from: "css/",
+                        to: "css/",
                     },
                     {
                         from: "sounds",
