@@ -37,7 +37,7 @@ module.exports = (env, argv) => {
         mode: "development",
         entry: {
             'webyarns-sounds': {
-                import: "./src/webyarns-sound.ts",
+                import: "./src/index.ts",
                 library: {
                     name: "WebyarnsSounds",
                     type: "umd"
