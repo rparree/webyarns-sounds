@@ -10,4 +10,8 @@ rsync  -auHzP \
 rsync  -auHzP \
    dist/ \
    --delete \
+   --exclude "css/" \
+   --exclude "js/" \
+   --exclude "sounds/" \
+   --exclude "*.html" \
    /home/rparree/documents/nextcloud-private/shares/alan/webyarns-sounds/$(git branch --show-current)
