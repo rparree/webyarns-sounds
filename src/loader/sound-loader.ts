@@ -9,21 +9,19 @@ type Options = {
 
 function showLoader(loaderElement: HTMLElement | undefined, show: boolean = true) {
     if (loaderElement)
-        document.addEventListener("DOMContentLoaded", () => {
-            loaderElement.style.visibility = show ? "visible" : "hidden"
-        })
+        loaderElement.style.visibility = show ? "visible" : "hidden"
 }
 
 export function init(options: Options): Promise<void> {
-    showLoader(options.loaderElement, false) ;
+    showLoader(options.loaderElement, false);
 
     return new Promise<void>(res => {
         options.initElement.addEventListener("click", (e) => {
             e.preventDefault()
             options.initElement.classList.add("webyarns-sounds-init")
-            showLoader(options.loaderElement) ;
+            showLoader(options.loaderElement);
             audioMap(() => {
-                showLoader(options.loaderElement, false) ;
+                showLoader(options.loaderElement, false);
                 res();
             })
         })
