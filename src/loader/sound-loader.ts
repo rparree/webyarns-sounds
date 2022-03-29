@@ -7,7 +7,7 @@ type Options = {
 }
 
 
-function showLoader(loaderElement: HTMLElement | undefined, show: boolean = false) {
+function showLoader(loaderElement: HTMLElement | undefined, show: boolean = true) {
     if (loaderElement)
         document.addEventListener("DOMContentLoaded", () => {
             loaderElement.style.visibility = show ? "visible" : "hidden"
